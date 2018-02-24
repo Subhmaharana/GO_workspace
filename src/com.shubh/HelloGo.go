@@ -1,4 +1,4 @@
-package main
+package com_shubh
 
 import "fmt"
 
