@@ -1,6 +1,7 @@
 #shubh folder
 /src/github.com
 /src/golang.org
+/pkg
 /bin
 
 # Windows image file caches
