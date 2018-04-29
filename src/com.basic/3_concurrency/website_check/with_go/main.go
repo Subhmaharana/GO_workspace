@@ -7,10 +7,10 @@ import (
 
 func main() {
 	listOfWebsites := []string{
-		"http://google.com",
 		"http://facebook.com",
 		"http://stackoverflow.com",
-		"http://golang.org",
+		"http://golan g.org",
+		"http://google.com",
 	}
 
 	//channel of type string
@@ -19,6 +19,9 @@ func main() {
 	for _, website := range listOfWebsites {
 		go checkWebsite(website, ch)
 	}
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
 	fmt.Println(<-ch)
 
 }
