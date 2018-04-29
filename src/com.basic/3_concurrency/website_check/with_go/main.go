@@ -13,17 +13,23 @@ func main() {
 		"http://golang.org",
 	}
 
+	//channel of type string
+	ch := make(chan string)
+
 	for _, website := range listOfWebsites {
-		checkWebsite(website)
+		go checkWebsite(website, ch)
 	}
+	fmt.Println(<-ch)
 
 }
 
-func checkWebsite(website string) {
+func checkWebsite(website string, ch chan string) {
 	_, err := http.Get(website)
 	if err != nil {
 		fmt.Println(website, "might be down!")
+		ch <- "might be down i think"
 		return
 	}
 	fmt.Println(website, "is up!")
+	ch <- "Yep it is up!"
 }
