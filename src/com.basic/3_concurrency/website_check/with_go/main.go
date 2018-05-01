@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -11,6 +12,7 @@ func main() {
 		"http://stackoverflow.com",
 		"http://golang.org",
 		"http://google.com",
+		"localhost:4200",
 	}
 
 	//channel of type string
@@ -20,18 +22,20 @@ func main() {
 		go checkWebsite(website, ch)
 	}
 
-	for index := 0; index < len(listOfWebsites); index++ {
-		fmt.Println(<-ch)
+	//alternate of infinite for loop(looping through the channel)
+	for l := range ch {
+		go checkWebsite(l, ch)
 	}
 }
 
 func checkWebsite(website string, ch chan string) {
+	time.Sleep(2 * time.Second)
 	_, err := http.Get(website)
 	if err != nil {
 		fmt.Println(website, "might be down!")
-		ch <- "might be down i think"
+		ch <- website
 		return
 	}
 	fmt.Println(website, "is up!")
-	ch <- "Yep it is up!"
+	ch <- website
 }
