@@ -9,7 +9,7 @@ func main() {
 	listOfWebsites := []string{
 		"http://facebook.com",
 		"http://stackoverflow.com",
-		"http://golan g.org",
+		"http://golang.org",
 		"http://google.com",
 	}
 
@@ -19,11 +19,10 @@ func main() {
 	for _, website := range listOfWebsites {
 		go checkWebsite(website, ch)
 	}
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
 
+	for index := 0; index < len(listOfWebsites); index++ {
+		fmt.Println(<-ch)
+	}
 }
 
 func checkWebsite(website string, ch chan string) {
