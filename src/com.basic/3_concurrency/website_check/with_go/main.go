@@ -24,12 +24,14 @@ func main() {
 
 	//alternate of infinite for loop(looping through the channel)
 	for l := range ch {
-		go checkWebsite(l, ch)
+		go func(link string) {
+			time.Sleep(2 * time.Second)
+			checkWebsite(link, ch)
+		}(l)
 	}
 }
 
 func checkWebsite(website string, ch chan string) {
-	time.Sleep(2 * time.Second)
 	_, err := http.Get(website)
 	if err != nil {
 		fmt.Println(website, "might be down!")
