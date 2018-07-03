@@ -13,8 +13,9 @@ func wave(A []int) ([]int) {
 		return A
 	}
 	sort.Ints(A)
+
 	for i := 1; i < len(A); i += 2 {
-		A[i - 1], A[i] = A[i], A[i - 1]
+		A[i-1], A[i] = A[i], A[i-1]
 	}
 	return A
 }
