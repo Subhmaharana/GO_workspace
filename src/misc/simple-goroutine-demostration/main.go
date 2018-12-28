@@ -17,7 +17,7 @@ func main() {
 }
 
 func conductSportsEvent(sport string, timeInSeconds int64) {
-	fmt.Println(sport, "started...: Should take ", timeInSeconds)
+	fmt.Println(sport, "started...: Should take ", timeInSeconds, " seconds")
 	time.Sleep(time.Duration(timeInSeconds) * time.Second)
 	fmt.Println("Finished ", sport)
 }
